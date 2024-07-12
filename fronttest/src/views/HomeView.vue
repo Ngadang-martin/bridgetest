@@ -48,11 +48,10 @@ const productData = ref<any>({
   price: '',
   image: ''
 })
-const apiUrl = 'http://127.0.0.1:8000/api'
-const imageUrl = 'http://127.0.0.1:8000/'
+const apiUrl = import.meta.env.VITE_APP_API
+const imageUrl = import.meta.env.VITE_APP_IMG8URL
 
 const getALlProducts = () => {
-  console.log('🚀 ~ getALlProducts ~ axios:', apiUrl)
   axios
     .get(apiUrl + '/products')
     .then((result) => {
@@ -267,6 +266,8 @@ onMounted(() => {
     isAthenticated.value = true
     axios.defaults.headers.common.Authorization = `Bearer${userInfo.value.token}`
   }
+  console.log(import.meta.env.VITE_APP_API)
+
 })
 </script>
 
@@ -313,7 +314,7 @@ onMounted(() => {
     <div class="d-flex justify-content-center row">
       
         <div class="col-md-10">
-            <div v-for="(item, index) in productDataList" class="row p-2  border rounded">
+            <div v-for="(item, index) in productDataList" class="row p-2  border mb-3 rounded">
                 <div class="col-md-3 mt-1"><img class="img-fluid img-responsive rounded product-image" :src="imageUrl + 'images/' + item.image"></div>
                 <div class="col-md-6 mt-1">
                     <h5>{{ item.name }}</h5>
