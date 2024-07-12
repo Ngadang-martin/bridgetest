@@ -292,15 +292,16 @@ onMounted(() => {
         </div>
         <div class="prod-text position" v-else>
           <div>
-            <h3>{{ userInfo.name }}</h3>
-            <h3>{{ userInfo.email }}</h3>
+            <h4>{{ userInfo.name }}</h4>
+            <h5>{{ userInfo.email }}</h5>
           </div>
           <Button class="btn-bg" label="Logout" severity="secondary" @click="logout()" />
         </div>
       </div>
     </div>
 
-    <div class="position-start">
+    <div class="container mt-5 mb-5">
+      <div class="d-flex justify-content-center mb-2">
       <Button
         label="Add a product"
         icon="pi pi-check"
@@ -309,36 +310,37 @@ onMounted(() => {
       />
     </div>
 
-    <div class="position_card">
-      <div v-for="(item, index) in productDataList" class="product-card">
-        <img :src="imageUrl + 'images/' + item.image" alt="" />
-        <div class="prod-text">
-          <h3>{{ item.name }}</h3>
-          <p>{{ item.description }}</p>
-          <p>{{ item.price }}</p>
-        </div>
-        <div v-if="isAthenticated" class="prod-action">
-          <Button
-            class="btn-bg"
-            label="Edit"
-            severity="secondary"
-            @click="
+    <div class="d-flex justify-content-center row">
+      
+        <div class="col-md-10">
+            <div v-for="(item, index) in productDataList" class="row p-2  border rounded">
+                <div class="col-md-3 mt-1"><img class="img-fluid img-responsive rounded product-image" :src="imageUrl + 'images/' + item.image"></div>
+                <div class="col-md-6 mt-1">
+                    <h5>{{ item.name }}</h5>
+                    <div class="d-flex flex-row">
+                        <div class="ratings mr-2"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div><span>310</span>
+                    </div>
+                    <p class="text-justify text-truncate para mb-0">{{ item.description }}<br><br></p>
+                </div>
+                <div class="align-items-center align-content-center col-md-3 border-left mt-1">
+                    <div class="d-flex flex-row align-items-center">
+                        <h4 class="mr-1">{{item.price}} XAF</h4>
+                    </div>
+                    <h6 class="text-success">Free shipping</h6>
+                    <div class="d-flex flex-column mt-4"><button class="btn btn-primary btn-sm" type="button" @click="
               () => {
                 productData = item
                 isEditing = true
                 openAddProductModal = true
               }
-            "
-          />
-          <Button
-            class="btn-bg"
-            label="Delete"
-            severity="secondary"
-            @click="isAthenticated ? deleteProduct(item.id) : (openLoginModal = true)"
-          />
+            ">Edit</button><button class="btn btn-outline-primary btn-sm mt-2" type="button"  @click="isAthenticated ? deleteProduct(item.id) : (openLoginModal = true)">Delete </button></div>
+                </div>
+            </div>
+           
         </div>
-      </div>
     </div>
+</div>
+
     <Dialog v-model:visible="openLoginModal" modal header="Login" :style="{ width: '25rem' }">
       <span class="text-surface-500 dark:text-surface-400 block mb-8"
         >Enter your login information.</span
@@ -527,7 +529,7 @@ onMounted(() => {
   width: 50%;
   height: 60px;
   margin-top: 2rem;
-  box-shadow: 2px 5px;
+  box-shadow: 1px 3px;
   display: flex;
   justify-content: space-between;
 }

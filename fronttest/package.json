@@ -17,11 +17,11 @@
     "@vueuse/core": "^10.11.0",
     "axios": "^1.7.2",
     "axios-retry": "^4.4.1",
+    "bootstrap": "^5.3.3",
     "pinia": "^2.1.7",
     "primevue": "^4.0.0",
     "vue": "^3.4.29",
-    "vue-router": "^4.4.0",
-    "vue-toastification": "^1.7.14"
+    "vue-router": "^4.4.0"
   },
   "devDependencies": {
     "@primevue/auto-import-resolver": "^4.0.0",
